@@ -4,36 +4,96 @@ use std::io::stdin;
 
 fn main() {
 
-  // ===================================================================
+    // Ownership, Pointers, and why we use references =========================
+    // One binding for each resource (anything not a primitive).
 
-  'outer: loop {
-      let number: i32 = 10;
-      println!("Pick a number");
+    // let vect1 = vec![1,2,3]; <-- will not work, but will with primitives
+    // let vect2 = vect1;
 
-      loop {
-          let mut line = String::new();
+    // println!("vect1[0] : {}", vect1[0]);
 
-          let input = stdin().read_line(&mut line);
+    let prim_val = 1;
+    let prim_val2 = prim_val;
 
-          let guess: Option<i32> = input.ok().map_or(None, |_|
-          line.trim().parse().ok());
+    println!("prim_val : {}", prim_val);
 
-          match guess {
-              None => println!("Enter a Number"),
-              Some(n) if n == number => {
-                  println!("You Guessed it");
-                  break 'outer;
-              }
-              Some(n) if n < number =>
-              println!("Too Low"),
-              Some(n) if n > number =>
-              println!("Too High"),
-              Some(_) => println!("Error")
-          }
-      }
-  }
+    // See more below...
 
-  // Strings ================================================================
+    // Closures =================================================================
+
+    // let sum_nums = |x: i32, y: i32| x + y;
+    // println!("7 + 8 = {}", sum_nums(7, 8));
+
+    // let num_ten = 10;
+
+    // let add_10 = |x: i32| x + num_ten;
+    // println!("5 + 10 = {}", add_10(5));
+
+    // Functions ================================================================
+
+    // Go out of main()...
+
+    // Tuples ===================================================================
+    // Fixed sized lists of many types, uses keys vs indices.
+
+    // let rand_tuple = ("Andy", 39);
+
+    // let rand_tuple_2: (&str, i8) = ("Andy", 39);
+
+    // println!("Name : {}", rand_tuple_2.0);
+
+  // Vectors ==================================================================
+
+    // let mut vect1 = vec![1,2,3,4,5];
+
+    // println!("Item 2 : {}", vect1[1]);
+
+    // for i in &vect1 {
+    //     println!("Vect: {}", i * 2);
+    // }
+    // vect1.push(6);
+    // vect1.pop();
+
+    // Arrays ===================================================================
+
+    // let rand_array = [1, 2, 3];
+
+    // println!("{}", rand_array[0]);
+
+    // println!("{}", rand_array.len());
+
+    // println!("Second 2 : {:?}", &rand_array[2..3]);
+
+    // Number Guesser Game ======================================================
+
+//   'outer: loop {
+//       let number: i32 = 10;
+//       println!("Pick a number");
+
+//       loop {
+//           let mut line = String::new();
+
+//           let input = stdin().read_line(&mut line);
+
+//           let guess: Option<i32> = input.ok().map_or(None, |_|
+//           line.trim().parse().ok());
+
+//           match guess {
+//               None => println!("Enter a Number"),
+//               Some(n) if n == number => {
+//                   println!("You Guessed it");
+//                   break 'outer;
+//               }
+//               Some(n) if n < number =>
+//               println!("Too Low"),
+//               Some(n) if n > number =>
+//               println!("Too High"),
+//               Some(_) => println!("Error")
+//           }
+//       }
+//   }
+
+    // Strings ================================================================
 
     // let rand_string = "I am a random string";
 
@@ -83,7 +143,7 @@ fn main() {
     // println!("Find Best : {}", rand_string2.contains("best"));
 
 
-  // loop ===================================================================
+    // loop ===================================================================
 
     // let mut x = 1;
 
@@ -100,7 +160,7 @@ fn main() {
     //     continue;
     // }
 
-  // while loop =============================================================
+    // while loop =============================================================
 
     // let mut y = 1;
 
@@ -109,13 +169,13 @@ fn main() {
     //     y += 1;
     // }
 
-  // for loop ===============================================================
+    // for loop ===============================================================
 
     // for z in 1..10 {
     //     println!("FOR : {}", z);
     // }
 
-  // Conditionals ===========================================================
+    // Conditionals ===========================================================
 
     // let age_old = 6;
 
@@ -144,7 +204,7 @@ fn main() {
 
     // println!("Can Vote : {}", can_vote);
 
-  // Math ===================================================================
+    // Math ===================================================================
 
     // let mut neg_4 = -4i32;
 
@@ -224,4 +284,32 @@ fn main() {
 
     // println!("MAX f64 {}", f64::MAX);
     // println!("MIN f64 {}", f64::MIN);
+
+    // Functions Continued ======================================================
+    // say_hello("Andy");
+
+    // println!("5 + 4 = {}", get_sum(5, 4));
+
+    // let sum = get_sum;
+    // println!("6 + 4 = {}", sum(6, 4));
 }
+
+    // fn say_hello(name: &str) {
+    //     println!("Hello {}", name);
+    // }
+
+    // fn get_sum(num1: i32, num2: i32) -> i32 {
+    //     num1 + num2
+    // }
+
+    // Functions End ============================================================
+
+    // Ownership continued ======================================================
+
+    fn sum_vects(v1: & Vec<i32>) -> i32 {
+        let sum = v1.iter().fold(0, |mut sum, &x| {sum += x; sum});
+        return sum;
+    }
+
+
+
