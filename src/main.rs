@@ -4,6 +4,148 @@ use std::io::stdin;
 
 fn main() {
 
+  // ===================================================================
+
+  'outer: loop {
+      let number: i32 = 10;
+      println!("Pick a number");
+
+      loop {
+          let mut line = String::new();
+
+          let input = stdin().read_line(&mut line);
+
+          let guess: Option<i32> = input.ok().map_or(None, |_|
+          line.trim().parse().ok());
+
+          match guess {
+              None => println!("Enter a Number"),
+              Some(n) if n == number => {
+                  println!("You Guessed it");
+                  break 'outer;
+              }
+              Some(n) if n < number =>
+              println!("Too Low"),
+              Some(n) if n > number =>
+              println!("Too High"),
+              Some(_) => println!("Error")
+          }
+      }
+  }
+
+  // Strings ================================================================
+
+    // let rand_string = "I am a random string";
+
+    // println!("Length : {}", rand_string.len());
+
+    // let (first, second) = rand_string.split_at(6);
+    // println!("First : {} Second : {}", first, second);
+
+    // let count = rand_string.chars().count();
+    // let mut chars = rand_string.chars();
+
+    // let mut indiv_char = chars.next();
+
+    // loop {
+    //     match indiv_char {
+    //         Some(x) => println!("{}", x),
+    //         None => break,
+    //     }
+    //     indiv_char = chars.next();
+    // }
+
+    // let mut iter = rand_string.split_whitespace();
+
+    // let mut indiv_word = iter.next();
+
+    // loop {
+    //     match indiv_word {
+    //         Some(x) => println!("{}", x),
+    //         None => break,
+    //     }
+    //     indiv_word = iter.next();
+    // }
+
+    // let rand_string2 = "I am a random string\nThere are other strings like it\nThis string is the best.";
+
+    // let mut lines = rand_string2.lines();
+    // let mut indiv_line = lines.next();
+
+    // loop {
+    //     match indiv_line {
+    //         Some(x) => println!("{}", x),
+    //         None => break,
+    //     }
+    //     indiv_line = lines.next();
+    // }
+
+    // println!("Find Best : {}", rand_string2.contains("best"));
+
+
+  // loop ===================================================================
+
+    // let mut x = 1;
+
+    // loop {
+    //     if ((x % 2) == 0) {
+    //         println!("{}", x);
+    //         x += 1;
+    //         continue;
+    //     }
+    //     if (x > 10) {
+    //         break;
+    //     }
+    //     x += 1;
+    //     continue;
+    // }
+
+  // while loop =============================================================
+
+    // let mut y = 1;
+
+    // while y <= 10{
+    //     println!("{}", y);
+    //     y += 1;
+    // }
+
+  // for loop ===============================================================
+
+    // for z in 1..10 {
+    //     println!("FOR : {}", z);
+    // }
+
+  // Conditionals ===========================================================
+
+    // let age_old = 6;
+
+    // if (age_old == 5) {
+    //     println!("Go to kindergarten");
+    // } else if (age_old > 5) && (age_old <= 18) {
+    //     println!("Go to grade {}", (age_old - 5));
+    // } else if (age_old <= 25) && (age_old > 18) {
+    //     println!("Go to College");
+    // } else {
+    //     println!("Get a job.");
+    // }
+
+    // println!("!true = {}", !true);
+
+    // println!("true || false = {}", true || false);
+
+    // println!("false || true = {}", false || true);
+
+    // println!("true && true = {}", true && true);
+
+    // println!("true != false : {}", true != false);
+
+    // // homemade ternary operator:
+    // let can_vote = if (age_old >= 18) {true} else {false};
+
+    // println!("Can Vote : {}", can_vote);
+
+  // Math ===================================================================
+
     // let mut neg_4 = -4i32;
 
     // println!("abs(-4) = {}", neg_4.abs());
@@ -13,7 +155,7 @@ fn main() {
     // println!("cbrt 27 = {}", 27f64.cbrt());
 
     // println!("Round 1.45 = {}", 1.45f64.round());
-    // println!("Floor 1.45 = {}", 1.45f64.floor());
+    // println!("Floor 1.45 = {}", 1.45fi64.floor());
 
     // println!("Ceiling 1.45 = {}", 1.45f64.ceil());
     // println!("e ^ 2 = {}", 2f64.exp());
